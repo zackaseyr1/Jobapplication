@@ -1,0 +1,12 @@
+<h2>Job List</h2>
+<ul>
+  {% for job in jobs %}
+    <li>{{ job.title }}</li>
+    <li>{{ job.description }}</li>
+    <li>{{ job.submission_time }}</li>
+    <!-- Add more job details as needed -->
+    <li><a href="{% url 'apply_job' job.pk %}">Apply</a></li>
+  {% empty %}
+    <li>No jobs found.</li>
+  {% endfor %}
+</ul>

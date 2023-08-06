@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .navbar {
+        max-width: 900px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: 4px solid #023047;
+        color: #023047;
+        padding: 20px;
+      }
+
+      .navbar a {
+        color: #023047;
+        text-decoration: none;
+        margin-right: 16px;
+      }
+
+      .navbar a:hover {
+        color: #e63946;
+      }
+
+      .about-container {
+        max-width: 900px;
+        margin: 20px auto;
+        font-family: "Rubik", sans-serif;
+      }
+
+      .card {
+        box-shadow: 0 4px 24px -8px rgba(2, 48, 71, 0.2);
+        padding: 24px;
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .card p {
+        margin: 0;
+        line-height: 1.8;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/"><h1>Somali Jobs</h1></a>
+        <div>
+          <a href="/">Home</a>
+          <a href="/job_page">Jobs</a>
+          <a href="/about_us/">About</a>
+          <a href="/contact/">Contact</a>
+          {% if user.is_authenticated %}
+            <a href="/dashboard/">Dashboard</a>
+            <a href="/logout/">Logout</a>
+          {% else %}
+            <a href="/login/">Login</a>
+            <a href="/register/">Register</a>
+          {% endif %}
+        </div>
+      </nav>
+
+    <div class="about-container">
+      <div class="card">
+        <h2>About Us</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae
+          justo sagittis, volutpat nisi ac, feugiat magna. Aliquam tempus nisi
+          elit, at maximus quam lobortis nec. In sit amet felis vel tellus
+          sagittis consectetur. Nulla facilisi. Sed sed eros a nunc tempor
+          congue. Nam tincidunt convallis arcu, ut consectetur ligula. Duis
+          rutrum, mauris id posuere tristique, sem velit condimentum nibh, sed
+          auctor enim nulla vitae urna. Vivamus pulvinar nunc eu fermentum
+          sollicitudin. In iaculis tortor in lacus malesuada, et scelerisque
+          erat rutrum. Aenean feugiat cursus est, vel auctor tellus vestibulum
+          sed. Suspendisse sed purus non est hendrerit sagittis.
+        </p>
+
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae
+            justo sagittis, volutpat nisi ac, feugiat magna. Aliquam tempus nisi
+            elit, at maximus quam lobortis nec. In sit amet felis vel tellus
+            sagittis consectetur. Nulla facilisi. Sed sed eros a nunc tempor
+            congue. Nam tincidunt convallis arcu, ut consectetur ligula. Duis
+            rutrum, mauris id posuere tristique, sem velit condimentum nibh, sed
+            auctor enim nulla vitae urna. Vivamus pulvinar nunc eu fermentum
+            sollicitudin. In iaculis tortor in lacus malesuada, et scelerisque
+            erat rutrum. Aenean feugiat cursus est, vel auctor tellus vestibulum
+            sed. Suspendisse sed purus non est hendrerit sagittis.
+          </p>
+      </div>
+    </div>
+  </body>
+</html>

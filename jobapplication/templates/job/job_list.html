@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* CSS styles here */
+      .navbar {
+        max-width: 900px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: 4px solid #023047;
+        color: #023047;
+        padding: 20px;
+      }
+
+      .navbar a {
+        color: #023047;
+        text-decoration: none;
+        margin-right: 16px;
+      }
+
+      .navbar a:hover {
+        color: #e63946;
+      }
+    .jobs-list-container {
+            max-width: 900px;
+            margin: 20px auto;
+            font-family: "Rubik", sans-serif;
+            }
+      .dashboard-container {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        max-width: 900px;
+        margin: 20px auto;
+        font-family: "Rubik", sans-serif;
+      }
+
+      .sidebar {
+        background-color: #f4f4f4;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 24px -8px rgba(2, 48, 71, 0.2);
+      }
+
+      .sidebar h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .sidebar ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .sidebar li {
+        margin-bottom: 10px;
+      }
+
+      .sidebar a {
+        display: block;
+        text-decoration: none;
+        color: #023047;
+        transition: color 400ms ease;
+      }
+
+      .sidebar a:hover {
+        color: #e63946;
+      }
+
+      .content {
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 24px -8px rgba(2, 48, 71, 0.2);
+        background-color: #fff;
+      }
+
+      .content h2 {
+        font-size: 30px;
+        border-left: 4px solid #023047;
+        padding-left: 20px;
+        margin-bottom: 20px;
+      }
+
+      .content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      .content th,
+      .content td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .content th {
+        background-color: #f4f4f4;
+      }
+
+      .content a {
+        text-decoration: none;
+        color: #023047;
+        transition: color 400ms ease;
+      }
+
+      .content a:hover {
+        color: #e63946;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <a href="/"><h1>Somali Jobs</h1></a>
+      <div>
+        <a href="/">Home</a>
+        <a href="/job_page">Jobs</a>
+        <a href="/about_us/">About</a>
+        <a href="/contact/">Contact</a>
+        {% if user.is_authenticated %}
+          <a href="/dashboard/">Dashboard</a>
+          <a href="/logout/">Logout</a>
+        {% else %}
+          <a href="/login/">Login</a>
+          <a href="/register/">Register</a>
+        {% endif %}
+      </div>
+    </nav>
+    
+    <div class="dashboard-container">
+      <div class="sidebar">
+        <h3>Company: {{ company.name }}</h3>
+        <ul>
+          <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+          <li><a href="{% url 'job_create' %}">Create Jobs</a></li>
+          <li><a href="{% url 'applicant_list' %}">Applicants list</a></li>
+          <li><a href="{% url 'job_list' %}">Job List</a></li>
+        </ul>
+        <a href="{% url 'logout' %}">&#9776; Logout</a>
+        <a href="{% url 'password_change' %}">&#9776; Change Password</a>
+      </div>
+
+      <div class="content">
+        <h2>Welcome, {{ user.first_name }}!</h2>
+
+        <!-- Display company information -->
+        
+
+        <!-- Display user's jobs -->
+        <h3>Your Jobs:</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Location</th>
+              <th>Job Location</th>
+              <th>Job Update</th>
+              <th>Job Delete</th>
+              <th>View Applicants </th>
+              <!-- Add more job details as needed -->
+            </tr>
+          </thead>
+          <tbody>
+            {% for job in jobs %}
+              <tr>
+                <td>{{ job.title }}</td>
+                <td>{{ job.location }}</td>
+                <td><a href="{% url 'job_detail' job.pk %}" class="details-btn">Job Details</a></td>
+                <td><a href="{% url 'job_update' job.pk %}" class="details-btn">Job Update</a></td>
+                <td><a href="{% url 'job_delete' job.pk %}" class="details-btn">Job Delete</a></td>
+                <td><a href="{% url 'job_applicants' job.id %}" class="details-btn"> View Applicants</a></td>
+                
+
+                
+                
+                <!-- Add more job details as needed -->
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="2">No jobs found.</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        <!-- Display applicants for user's jobs -->
+       
+
+       
+      </div>
+    </div>
+  </body>
+</html>
